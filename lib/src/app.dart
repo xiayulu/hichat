@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hichat/src/views/chat/page.dart';
+import 'package:hichat/src/views/contacts/page.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
@@ -10,7 +11,7 @@ class App extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(),
       title: "HiChat",
-      home: ChatListPage(),
+      home: ContactPage(),
     );
   }
 }

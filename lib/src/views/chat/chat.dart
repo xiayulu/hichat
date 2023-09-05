@@ -51,28 +51,34 @@ class ChatItem extends StatelessWidget {
     }
 
     if (isDotted(count, isMuted)) {
-      return _buildDot();
+      return _buildBadgeDot();
     }
 
     if (count > 99) {
-      return _buildMoreThan99();
+      return _buildBadgeMore();
     }
 
     if (count == 0) {
       return Container();
     }
 
-    return Badge.count(count: count);
+    return Badge.count(
+      count: count,
+      padding: EdgeInsets.symmetric(vertical: 2, horizontal: 6),
+      textStyle: TextStyle(fontSize: 18),
+      largeSize: 24,
+      backgroundColor: Colors.red,
+    );
   }
 
-  Widget _buildDot() {
+  Widget _buildBadgeDot() {
     return CircleAvatar(
       backgroundColor: Colors.red,
       radius: 6,
     );
   }
 
-  Widget _buildMoreThan99() {
+  Widget _buildBadgeMore() {
     return Container(
       padding: EdgeInsets.symmetric(vertical: 4, horizontal: 8),
       height: 18,
