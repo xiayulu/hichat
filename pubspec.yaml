@@ -36,6 +36,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   english_words: ^4.0.0
   gap: ^3.0.1
+  font_awesome_flutter: ^10.5.0
 
 dev_dependencies:
   flutter_test:

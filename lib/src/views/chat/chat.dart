@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:hichat/src/views/chat/models/chat.dart';
+import 'package:hichat/src/widgets/badge.dart';
 
 class ChatItem extends StatelessWidget {
   final ChatModel data;
@@ -26,7 +27,9 @@ class ChatItem extends StatelessWidget {
           Positioned(
             top: -3,
             right: -3,
-            child: _buildBadage(data.newMessageCount, data.isMuted),
+            child: TiBadge(
+                count: data.newMessageCount,
+                isDotted: data.isMuted && data.newMessageCount > 0),
           )
         ],
       ),
@@ -38,67 +41,17 @@ class ChatItem extends StatelessWidget {
       trailing: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(data.time),
-          if (data.isMuted) Icon(Icons.notifications_off),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildBadage(int count, bool isMuted) {
-    bool isDotted(int count, bool isMuted) {
-      return isMuted && count > 0;
-    }
-
-    if (isDotted(count, isMuted)) {
-      return _buildBadgeDot();
-    }
-
-    if (count > 99) {
-      return _buildBadgeMore();
-    }
-
-    if (count == 0) {
-      return Container();
-    }
-
-    return Badge.count(
-      count: count,
-      padding: EdgeInsets.symmetric(vertical: 2, horizontal: 6),
-      textStyle: TextStyle(fontSize: 18),
-      largeSize: 24,
-      backgroundColor: Colors.red,
-    );
-  }
-
-  Widget _buildBadgeDot() {
-    return CircleAvatar(
-      backgroundColor: Colors.red,
-      radius: 6,
-    );
-  }
-
-  Widget _buildBadgeMore() {
-    return Container(
-      padding: EdgeInsets.symmetric(vertical: 4, horizontal: 8),
-      height: 18,
-      width: 32,
-      alignment: Alignment.center,
-      decoration: BoxDecoration(
-        color: Colors.red,
-        borderRadius: BorderRadius.all(
-          Radius.circular(999),
-        ),
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: List.generate(
-          3,
-          (index) => CircleAvatar(
-            radius: 2,
-            backgroundColor: Colors.white,
+          Text(
+            data.time,
+            style: TextStyle(color: Colors.grey.shade600),
           ),
-        ),
+          if (data.isMuted)
+            Icon(
+              Icons.notifications_off,
+              size: 20,
+              color: Colors.grey.shade500,
+            ),
+        ],
       ),
     );
   }
