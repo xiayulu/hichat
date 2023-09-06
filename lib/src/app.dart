@@ -5,6 +5,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hichat/src/settings/color.dart';
 import 'package:hichat/src/views/chat/page.dart';
 import 'package:hichat/src/views/contacts/page.dart';
+import 'package:hichat/src/views/discover/page.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
@@ -34,7 +35,7 @@ class _RootAppState extends State<RootApp> {
   final screens = [
     const ChatListPage(),
     const ContactPage(),
-    const ChatListPage(),
+    const DisCoverPage(),
     const ContactPage(),
   ];
 
@@ -53,7 +54,7 @@ class _RootAppState extends State<RootApp> {
             BottomNavigationBarItem(
               icon: Badge(
                 backgroundColor: Colors.red,
-                label: Text('$chatCount'),
+                label: Text(chatCountStr),
                 child: const FaIcon(FontAwesomeIcons.comment),
               ),
               activeIcon: Badge(
